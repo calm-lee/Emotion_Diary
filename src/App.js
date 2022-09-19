@@ -30,7 +30,6 @@ const reducer = (state, action) => {
         newState = state.filter((it) => it.id !== action.targetId);
         break;
       }
-      a;
     case "EDIT": {
       newState = state.map((it) =>
         it.id === action.data.id ? { ...action.data } : it
@@ -43,6 +42,7 @@ const reducer = (state, action) => {
 };
 
 export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
@@ -56,7 +56,7 @@ function App() {
         id: dataId.current,
         date: new Date(date).getTime(),
         content,
-        emotion,
+        emotion
       },
     });
     dataId.current += 1;
@@ -73,13 +73,20 @@ function App() {
         id: targetId,
         data: new Date(date).getTime(),
         content,
-        emiton,
+        emotion,
       },
     });
   };
 
   return (
     <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider
+        value={{
+          onCreate,
+          onEdit,
+          onRemove
+        }}
+      >
       <BrowserRouter>
         <div className="App">
           <MyHeader
@@ -116,6 +123,7 @@ function App() {
           <RouterTest />
         </div>
       </BrowserRouter>
+      </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider>
   );
 }
