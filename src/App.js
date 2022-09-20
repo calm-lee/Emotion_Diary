@@ -25,16 +25,17 @@ const reducer = (state, action) => {
       newState = [action.data, ...state];
       break;
     }
-    case "REMOVE":
-      {
-        newState = state.filter((it) => it.id !== action.targetId);
-        break;
-      }
-    case "EDIT": {
-      newState = state.map((it) =>
-        it.id === action.data.id ? { ...action.data } : it
-      );
+    case "REMOVE": {
+      newState = state.filter((it) => it.id !== action.targetId);
+      break;
     }
+    case "EDIT":
+      {
+        newState = state.map((it) =>
+          it.id === action.data.id ? { ...action.data } : it
+        );
+      }
+      break;
     default:
       return state;
   }
@@ -44,8 +45,44 @@ const reducer = (state, action) => {
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
+const dummyDate = [
+  {
+    id: 1,
+    emotion: 1,
+    content: "오늘의 일기 1번",
+    date: 1663709598803,
+  },
+  {
+    id: 2,
+    emotion: 2,
+    content: "오늘의 일기 2번",
+    date: 1663709598804,
+  },
+  {
+    id: 3,
+    emotion: 3,
+    content: "오늘의 일기 3번",
+    date: 1663709598805,
+  },
+  {
+    id: 4,
+    emotion: 4,
+    content: "오늘의 일기 4번",
+    date: 1663709598806,
+  },
+  {
+    id: 5,
+    emotion: 5,
+    content: "오늘의 일기 5번",
+    date: 1663709598807,
+  },
+];
+
 function App() {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, dispatch] = useReducer(reducer, dummyDate);
+
+  console.log(new Date().getTime());
+
   const dataId = useRef(0);
 
   //CREATE
@@ -56,7 +93,7 @@ function App() {
         id: dataId.current,
         date: new Date(date).getTime(),
         content,
-        emotion
+        emotion,
       },
     });
     dataId.current += 1;
@@ -84,45 +121,48 @@ function App() {
         value={{
           onCreate,
           onEdit,
-          onRemove
+          onRemove,
         }}
       >
-      <BrowserRouter>
-        <div className="App">
-          <MyHeader
-            headText={"App"}
-            leftChild={
-              <MyButton text={"왼쪽 버튼"} onClick={() => alert("왼쪽 클릭")} />
-            }
-            rightChild={
-              <MyButton
-                text={"오른쪽 버튼"}
-                onClick={() => alert("오른쪽 클릭")}
-              />
-            }
-          />
-          <h2>App.js</h2>
+        <BrowserRouter>
+          <div className="App">
+            {/* <MyHeader
+              headText={"App"}
+              leftChild={
+                <MyButton
+                  text={"왼쪽 버튼"}
+                  onClick={() => alert("왼쪽 클릭")}
+                />
+              }
+              rightChild={
+                <MyButton
+                  text={"오른쪽 버튼"}
+                  onClick={() => alert("오른쪽 클릭")}
+                />
+              }
+            />
+            <h2>App.js</h2>
 
-          <MyButton
-            text={"버튼"}
-            onClick={() => alert("버튼 클릭")}
-            type={"positive"}
-          />
-          <MyButton
-            text={"버튼"}
-            onClick={() => alert("버튼 클릭")}
-            type={"negative"}
-          />
-          <MyButton text={"버튼"} onClick={() => alert("버튼 클릭")} />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/new" element={<New />} />
-            <Route path="/edit" element={<Edit />} />
-            <Route path="/diary/:id" element={<Diary />} />
-          </Routes>
-          <RouterTest />
-        </div>
-      </BrowserRouter>
+            <MyButton
+              text={"버튼"}
+              onClick={() => alert("버튼 클릭")}
+              type={"positive"}
+            />
+            <MyButton
+              text={"버튼"}
+              onClick={() => alert("버튼 클릭")}
+              type={"negative"}
+            />
+            <MyButton text={"버튼"} onClick={() => alert("버튼 클릭")} /> */}
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/new" element={<New />} />
+              <Route path="/edit" element={<Edit />} />
+              <Route path="/diary/:id" element={<Diary />} />
+            </Routes>
+            <RouterTest />
+          </div>
+        </BrowserRouter>
       </DiaryDispatchContext.Provider>
     </DiaryStateContext.Provider>
   );
