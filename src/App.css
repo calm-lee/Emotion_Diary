@@ -95,3 +95,21 @@ header .head_btn_right{
 header button {
   font-family: "BM Plex Sans KR";
 }
+
+.DiaryItem{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e2e2e2;
+  
+  display: flex;
+  justify-content: space-between;
+}
+
+.DiaryItem .emotion_img_wrapper{
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}

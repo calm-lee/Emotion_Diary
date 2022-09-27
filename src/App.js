@@ -160,7 +160,6 @@ function App() {
               <Route path="/edit" element={<Edit />} />
               <Route path="/diary/:id" element={<Diary />} />
             </Routes>
-            <RouterTest />
           </div>
         </BrowserRouter>
       </DiaryDispatchContext.Provider>
