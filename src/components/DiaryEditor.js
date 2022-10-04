@@ -51,6 +51,12 @@ export const getStringDate = (date) => {
 
 const DiaryEditor = () => {
   const [date, setDate] = useState(getStringDate(new Date()));
+
+  // 클릭할 시 감정 변화
+  const [emotion, setEmotion] = useState(3);
+  const handleClickEmotion = (emotion) => {
+    setEmotion(emotion);
+  };
   const navigate = useNavigate();
 
   return (
@@ -77,7 +83,11 @@ const DiaryEditor = () => {
           <h4>오늘의 감정</h4>
           <div className="input_box emotion_list_wrapper">
             {emotionList.map((it) => (
-              <EmotionItem key={it.emotion_id} />
+              <EmotionItem
+                key={it.emotion_id}
+                {...it}
+                onclick={handleClickEmotion}
+              />
             ))}
           </div>
         </section>
