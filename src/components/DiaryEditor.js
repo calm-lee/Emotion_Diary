@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
@@ -50,6 +50,7 @@ export const getStringDate = (date) => {
 };
 
 const DiaryEditor = () => {
+  const contentRef = useRef();
   const [date, setDate] = useState(getStringDate(new Date()));
 
   // 클릭할 시 감정 변화
@@ -86,9 +87,20 @@ const DiaryEditor = () => {
               <EmotionItem
                 key={it.emotion_id}
                 {...it}
-                onclick={handleClickEmotion}
+                onClick={handleClickEmotion}
+                isSelected={it.emotion_id === emotion}
               />
             ))}
+          </div>
+        </section>
+        <section>
+          <h4>오늘의 일기</h4>
+          <div>
+            <textArea
+              ref={contentRef}
+              value={value}
+              onChange={(e) => setContent(e.target.value)}
+            />
           </div>
         </section>
       </div>
