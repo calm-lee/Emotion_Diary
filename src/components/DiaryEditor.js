@@ -50,7 +50,8 @@ export const getStringDate = (date) => {
 };
 
 const DiaryEditor = () => {
-  const contentRef = useRef();
+  const navigate = useNavigate();
+
   const [date, setDate] = useState(getStringDate(new Date()));
 
   // 클릭할 시 감정 변화
@@ -58,7 +59,10 @@ const DiaryEditor = () => {
   const handleClickEmotion = (emotion) => {
     setEmotion(emotion);
   };
-  const navigate = useNavigate();
+
+  // 일기 쓰는 창 내용
+  const contentRef = useRef();
+  const [content, setContent] = useState("");
 
   return (
     <div>
@@ -97,10 +101,17 @@ const DiaryEditor = () => {
           <h4>오늘의 일기</h4>
           <div>
             <textArea
+              placeholder="오늘은 어땠나요?"
               ref={contentRef}
-              value={value}
+              value={content}
               onChange={(e) => setContent(e.target.value)}
             />
+          </div>
+        </section>
+        <section>
+          <div className="control_box">
+            <MyButton text={"취소하기"} onClick={() => navigate(-1)} />
+            <MyButton text={"작성완료"} type={`positive`} onClick={() => {}} />
           </div>
         </section>
       </div>
