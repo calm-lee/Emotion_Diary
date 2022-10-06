@@ -1,5 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import DiaryContextDispatch, { DiaryDispatchContext } from "./../App.js";
+
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
 import EmotionItem from "./EmotionItem";
@@ -64,6 +66,21 @@ const DiaryEditor = () => {
   const contentRef = useRef();
   const [content, setContent] = useState("");
 
+  // 작성완료 버튼 클릭 시
+
+  const { onCreate } = useContext(DiaryDispatchContext); // App.js에서 onCreate 함수 가져옴
+
+  const handleSumbit = () => {
+    if (content.length < 1) {
+      // 한 자도 안 채웠을 경우
+      contentRef.current.focus();
+      return; // return으로 더 진행시키지 못하도록 함
+    }
+
+    onCreate(date, content, emotion); // 1자 이상일 시 onCreate 작동
+    navigate("/", { replace: true }); // 작성완료 버튼 누르면 HOME 화면으로 돌아가서 다시 돌아오지 못하도록 함
+  };
+
   return (
     <div>
       <MyHeader
@@ -111,7 +128,11 @@ const DiaryEditor = () => {
         <section>
           <div className="control_box">
             <MyButton text={"취소하기"} onClick={() => navigate(-1)} />
-            <MyButton text={"작성완료"} type={`positive`} onClick={() => {}} />
+            <MyButton
+              text={"작성완료"}
+              type={`positive`}
+              onClick={handleSumbit}
+            />
           </div>
         </section>
       </div>
