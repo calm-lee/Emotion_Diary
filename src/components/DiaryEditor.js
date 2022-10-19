@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DiaryContextDispatch, { DiaryDispatchContext } from "./../App.js";
 
@@ -51,7 +51,7 @@ export const getStringDate = (date) => {
   return `${year}-${month}-${day}`;
 };
 
-const DiaryEditor = () => {
+const DiaryEditor = (isEdit, originData) => {
   const navigate = useNavigate();
 
   const [date, setDate] = useState(getStringDate(new Date()));
@@ -80,6 +80,11 @@ const DiaryEditor = () => {
     onCreate(date, content, emotion); // 1자 이상일 시 onCreate 작동
     navigate("/", { replace: true }); // 작성완료 버튼 누르면 HOME 화면으로 돌아가서 다시 돌아오지 못하도록 함
   };
+
+  useEffect(() => {
+    if (isEdit) {
+    }
+  }, [isEdit, originData]);
 
   return (
     <div>
