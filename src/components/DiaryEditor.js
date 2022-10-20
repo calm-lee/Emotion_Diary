@@ -83,13 +83,16 @@ const DiaryEditor = (isEdit, originData) => {
 
   useEffect(() => {
     if (isEdit) {
+      setDate(getStringDate(new Date(parseInt(originData.date))));
+      setEmotion(originData.emotion);
+      setContent(originData.content);
     }
   }, [isEdit, originData]);
 
   return (
     <div>
       <MyHeader
-        headText={"새 일기 쓰기"}
+        headText={isEdit ? "일기 수정하기" : "새 일기 쓰기"}
         leftChild={
           <MyButton text={"< 뒤로 가기"} onClick={() => navigate(-1)} />
         }
