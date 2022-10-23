@@ -67,14 +67,25 @@ const DiaryEditor = (isEdit, originData) => {
   const [content, setContent] = useState("");
 
   // 작성완료 버튼 클릭 시
-
-  const { onCreate } = useContext(DiaryDispatchContext); // App.js에서 onCreate 함수 가져옴
+  const { onCreate, onEdit } = useContext(DiaryDispatchContext); // App.js에서 onCreate, onEdit 함수 가져옴
 
   const handleSumbit = () => {
     if (content.length < 1) {
       // 한 자도 안 채웠을 경우
       contentRef.current.focus();
       return; // return으로 더 진행시키지 못하도록 함
+    }
+
+    if (
+      window.confirm(
+        isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 작성하시겠습니까?"
+      )
+    ) {
+      if (!isEdit) {
+        onCreate(date, content, emotion);
+      } else {
+        onEdit(originData.id, date, content, emotion);
+      }
     }
 
     onCreate(date, content, emotion); // 1자 이상일 시 onCreate 작동
