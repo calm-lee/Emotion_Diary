@@ -2,6 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { useState, useEffect } from "react";
 import { DiaryStateContext } from "../App";
+import { getStringDate } from "../util/date.js";
+import MyHeader from "../components/MyHeader";
+import MyButton from "../components/MyButton";
 
 const Diary = () => {
   const { id } = useParams();
@@ -24,14 +27,20 @@ const Diary = () => {
     }
   }, [id, diaryList]);
 
-  console.log(id);
-
-  return (
-    <div>
-      <h1>Diary</h1>
-      <p>이 곳은 일기 상세 페이지입니다.</p>
-    </div>
-  );
+  if (!data) {
+    return <div className="DiaryPage">로딩 중입니다...</div>;
+  } else {
+    return (
+      <div className="DiaryPage">
+        <MyHeader
+          headText={`${getStringDate(new Date(data.date))} 기록`}
+          leftChild={
+            <MyButton text="< 뒤로가기" onClick={() => navigate(-1)} />
+          }
+        />
+      </div>
+    );
+  }
 };
 
 export default Diary;

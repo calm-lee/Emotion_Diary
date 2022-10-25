@@ -1,6 +1,7 @@
 import { useState, useRef, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DiaryDispatchContext } from "./../App.js";
+import { getStringDate } from "../util/date.js";
 
 import MyButton from "./MyButton";
 import MyHeader from "./MyHeader";
@@ -36,20 +37,6 @@ const emotionList = [
     emotion_descript: "끔찍함",
   },
 ];
-
-export const getStringDate = (date) => {
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  if (month < 10) {
-    month = `0${month}`;
-  }
-  if (day < 10) {
-    day = `0${day}`;
-  }
-
-  return `${year}-${month}-${day}`;
-};
 
 const DiaryEditor = (isEdit, originData) => {
   const navigate = useNavigate();
