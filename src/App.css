@@ -319,3 +319,39 @@ header button {
   background-color:#fd565f;
   color: white;
 }
+
+/* Diary */
+
+.DiaryPage{
+  
+}
+
+.DiaryPage section{
+  width: 100%;
+  margin-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.DiaryPage h4{
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.DiaryPage .diary_img_wrapper{
+  background-color: #ececec;
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.DiaryPage .emotion_descript{
+  font-size: 25px;
+}
