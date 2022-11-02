@@ -79,6 +79,10 @@ const dummyDate = [
 ];
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem("key", 10);
+  }, []);
+
   const [data, dispatch] = useReducer(reducer, dummyDate);
 
   console.log(new Date().getTime());
