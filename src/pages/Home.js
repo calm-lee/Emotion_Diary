@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { DiaryStateContext } from "../App";
-
 import MyHeader from "./../components/MyHeader";
+import SwapMonth from "./../components/SwapMonth";
 import MyButton from "../components/MyButton";
 import DiaryList from "../components/DiaryList";
 const Home = () => {
@@ -9,7 +9,13 @@ const Home = () => {
 
   const [data, setData] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
-  const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
+  const title = "하루온도";
+  const monthText = `${curDate.getMonth() + 1}월`;
+
+  useEffect(()=>{
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `하루온도, 당신의 감정 일기장`;
+  }, []);
 
   useEffect(() => {
     if (diaryList.length >= 1) {
@@ -52,8 +58,11 @@ const Home = () => {
 
   return (
     <div>
-      <MyHeader
-        headText={headText}
+      <MyHeader 
+        title={title}
+      />
+      <SwapMonth
+        monthText={monthText}
         leftChild={<MyButton text={"<"} onClick={decreaseMonth} />}
         rightChild={<MyButton text={">"} onClick={increaseMoth} />}
       />

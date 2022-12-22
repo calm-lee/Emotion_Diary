@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@300&family=Noto+Serif+KR&display=swap');
 
 body{
-  background-color: #F6F6F6;
+  background-color: #f5f0e9;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'BM Plex Sans KR';
   min-height: 100vh;
   margin: 0px;
+  color: #383838;
+  font-family: 'Gamja Flower';
 }
 
 @media(min-width: 650px){
@@ -34,6 +35,15 @@ body{
   padding-right: 20px;
 }
 
+.question{
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px;
+}
+
+.question_box{
+  margin-bottom: 20px;
+}
+
 .MyButton{
   cursor: pointer;
   border: none;
@@ -46,7 +56,7 @@ body{
 
   font-size: 18px;
   white-space: nowrap;
-  font-family: 'BM Plex Sans KR';
+  font-family: 'Noto Serif KR', serif;
 }
 
 .MyButton_default{
@@ -55,12 +65,12 @@ body{
 }
 
 .MyButton_positive{
-  background-color: #64c964;
+  background-color: #4b6880;
   color: white;
 }
 
 .MyButton_negative{
-  background-color: #fd565f;
+  background-color: #ed828f;
   color: white;
 }
 
@@ -74,26 +84,51 @@ header{
 }
 
 header > div {
+  width:  50px;
+  height: 70px;
   display: flex;
 }
 
 header .head_text{
+  width: 100%;
+  font-size: 30px;
+  justify-content: center;
+  align-items: center;
+  color: #3d3536;
+  font-family: 'Noto Serif KR', serif;
+}
+
+.SwapMonth {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  font-family: 'Noto Serif KR', serif;
+}
+
+.SwapMonth > div {
+  display: flex;
+}
+
+.SwapMonth .monthText{
   width: 50%;
-  font-size: 25px;
+  font-size: 24px;
   justify-content: center;
 }
 
-header .head_btn_left{
+.SwapMonth .head_btn_left{
   width: 25%;
   justify-content: start;
 }
 
-header .head_btn_right{
+.SwapMonth .head_btn_right{
   width: 25%;
+  justify-content: end;
 }
 
-header button {
-  font-family: "BM Plex Sans KR";
+.SwapMonth button {
+  font-family: 'Noto Serif KR', serif;
 }
 
 .DiaryItem{
@@ -144,8 +179,9 @@ header button {
   padding-right: 20px;
 
   cursor: pointer;
-  font-family: 'BM Plex Sans KR';
+  font-family: 'Noto Serif KR', serif;
   font-size: 18px;
+  color: #383838;
 }
 
 .DiaryItem{
@@ -236,8 +272,9 @@ header button {
   padding-right: 20px;
 
   cursor: pointer;
-  font-family: 'BM flex sans KR';
-  font-size: 20px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px;
+  color: #383838;
 }
 
 .DiaryEditor .emotion_list_wrapper{

@@ -9,9 +9,9 @@ const sortOptionList = [
 ];
 
 const filterOptionList = [
-  { value: "all", name: "전부 다" },
-  { value: "good", name: "좋은 감정만" },
-  { value: "bad", name: "안 좋은 감정만" },
+  { value: "all", name: "모든 일기" },
+  { value: "good", name: "좋았던 날" },
+  { value: "bad", name: "안 좋았던 날" },
 ];
 
 const ControlMenu = ({ value, onChange, optionList }) => {
